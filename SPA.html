@@ -1,10 +1,16 @@
 <!Doctype html>
 <html>
 <head>
-<title>SPA Starter</title>
+	<!--ie9+ rendering support for latest standards-->
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>SPA Chapter 4</title>
 
-<!-- Stylesheets **Loading css first optimizes performance-->
+<!--third-party stylesheets-->
+
+<!--our stylesheets-->
 <link rel="stylesheet" type="text/css" href="css/spa.css">
+<link rel="stylesheet" type="text/css" href="css/spa.chat.css">
 <link rel="stylesheet" type="text/css" href="css/spa.shell.css">
 
 <!-- Third Party JavaScript -->
@@ -13,7 +19,10 @@
 
 <!-- Loading own JavaScript -->
 <script src="js/spa.js"></script>
+<script src="js/spa.util.js"></script>
+<script src="js/spa.model.js"></script>
 <script src="js/spa.shell.js"></script>
+<script src="js/spa.chat.js"></script>
 
 <script>
 	// synonymous to $(document).ready(function(.....))

@@ -37,11 +37,16 @@ spa.shell=(function () {
 		chat_extend_height : 450,
 		chat_retract_height : 15,
 		chat_retracted_title : 'Click to retract',
-		chat_extended_title : 'Click to extend'
+		chat_extended_title : 'Click to extend',
+		resize_interval : 200
 	},
-	stateMap={anchor_map : {} },
+	stateMap={
+		$container : undefined,
+		anchor_map : {},
+		resize_idto : undefined
+	},
 	jqueryMap={},
-	copyAnchorMap, changeAnchorPart, onHashChange, setChatAnchor, setJqueryMap, toggleChat, onClickChat, initModule;
+	copyAnchorMap, changeAnchorPart, onHashChange, setChatAnchor, setJqueryMap, toggleChat, onClickChat, onResize, initModule;
 	//------------End Module Scope Variables-------------------
 
 	//------------------Begin Utility Methods-------------------
@@ -244,6 +249,17 @@ spa.shell=(function () {
 	};
 	//--------------------End Event Handler /onHashChange/-------------
     
+    //--------------------Begin Event Handler /onResize/-----------------
+    onResize = function(){
+    	if(stateMap.resize_idto){return true;}
+
+    	spa.chat.handleResize();
+    	stateMap.resize_idto = setTimeout(
+    		function(){stateMap.resize_idto = undefined;},
+    		configMap.resize_interval
+    		);
+    }
+    //--------------------End Event Handler /onResize/-----------------
     //------------------Begin Event Handler /onClickChat/-------------------
 	onClickChat=function(event){
 		changeAnchorPart({
@@ -304,6 +320,7 @@ spa.shell=(function () {
 		//the trigger event, which is used to ensure the anchor is considered on-load
 		//
 		$(window)
+		.bind('resize', onResize)
 		.bind('hashchange', onHashChange)
 		.trigger('hashchange');
 	};

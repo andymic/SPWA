@@ -1,7 +1,8 @@
 /*
-spa.js
-Root namespace module
+*spa.data.js
+*Data module
 */
+
 
 /*jslint  browser: true, continue: true,
   devel  : true, indent : 2,      maxerr      : 50,
@@ -12,13 +13,4 @@ Root namespace module
 
 /*global $, spa*/
 
-var spa=(function(){
-	'use strict';
-	
-	var initModule=function($container){
-		spa.model.initModule();
-		spa.shell.initModule($container);
-	};
-
-	return { initModule: initModule};
-}());
+spa.data=(function() {return {};}());
